@@ -1,0 +1,20 @@
+.categoryTable {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.categoryTable > div {
+  margin: 2px;
+  background: powderblue;
+  padding: 5px;
+}
+.categoryTable > div:hover {
+  opacity: 0.7;
+}
+
+.categoryTable > div:nth-child(6n + 2) {
+  background: lemonchiffon;
+}
+
+.categoryTable > div:nth-child(6n + 3) {
+  background: palegreen;

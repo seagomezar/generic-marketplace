@@ -1,0 +1,21 @@
+.Reviewstable {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.Reviewstable > div {
+  margin: 2px;
+  background: powderblue;
+  padding: 5px;
+}
+.Reviewstable > div:hover {
+  opacity: 0.7;
+}
+
+.Reviewstable > div:nth-child(9n + 2) {
+  background: lemonchiffon;
+}
+
+.Reviewstable > div:nth-child(9n + 3) {
+  background: palegreen;
+}
