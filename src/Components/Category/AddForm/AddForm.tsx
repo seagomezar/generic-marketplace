@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./AddForm.css";
-import executeQuery from "../CategoryService";
+import { executeQuery } from "../../../Service/GraphQlService";
 
 export default function CategoriesAddForm() {
   const [categories, setCategories] = useState({

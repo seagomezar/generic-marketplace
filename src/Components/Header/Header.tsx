@@ -28,25 +28,25 @@ export default function Header() {
               <Link to={`products`}>Products</Link>
             </li>
             <li>
-              <Link to={`imagesxproduct`}>Images X Product</Link>
+              <Link to={`images-x-product`}>Images X Product</Link>
             </li>
             <li>
-              <Link to={`category`}>Category</Link>
+              <Link to={`category`}>Categories</Link>
             </li>
             <li>
               <Link to={`Carts`}>Carts</Link>
             </li>
             <li>
-              <Link to={`Carts_x_products`}>Carts_x_products</Link>
+              <Link to={`products-in-cart`}>Products In Cart</Link>
             </li>
             <li>
-              <Link to={`Questions`}>Questions</Link>
+              <Link to={`questions`}>Questions</Link>
             </li>
             <li>
-              <Link to={`Reviews`}>Reviews</Link>
+              <Link to={`reviews`}>Reviews</Link>
             </li>
             <li>
-              <Link to={`User`}>User</Link>
+              <Link to={`users`}>User</Link>
             </li>
           </ul>
         </nav>

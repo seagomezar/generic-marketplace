@@ -19,7 +19,7 @@ updated_at: timestamptz!
 
 export default function Carts_x_productEditForm() {
   const [Carts_x_product, setCarts_x_product] = useState({
-    carts_id: "",
+    cart_id: "",
     product_id: ""
   });
   let { id } = useParams();
@@ -27,8 +27,8 @@ export default function Carts_x_productEditForm() {
   useEffect(() => {
     async function getCarts_x_products() {
       const query = `query getCarts_x_products {
-        carts_x_products(where: {id: {_eq: ${id}}}) {
-          carts_id,
+        products_in_cart(where: {id: {_eq: ${id}}}) {
+          cart_id,
           product_id
 
         }
@@ -40,7 +40,7 @@ export default function Carts_x_productEditForm() {
         console.error(errors);
       }
       console.info(data);
-      setCarts_x_product(data.carts_x_products[0]);
+      setCarts_x_product(data.products_in_cart[0]);
     }
     getCarts_x_products();
   }, []);
@@ -48,32 +48,32 @@ export default function Carts_x_productEditForm() {
     <div className="Carts_x_productEditForm">
       <form>
         <label
-          id="Carts_x_product-EditForm-carts_id-label"
-          data-testid="Carts_x_product-EditForm-carts_id-label"
-          htmlFor="Carts_x_product-EditForm-carts_id"
+          id="Carts_x_product-EditForm-cart_id-label"
+          data-testid="Carts_x_product-EditForm-cart_id-label"
+          htmlFor="Carts_x_product-EditForm-cart_id"
         >
-          carts_id:
+          cart_id:
         </label>
         <input
-          id="Carts_x_product-EditForm-carts_id"
-          data-testid="Carts_x_product-EditForm-carts_id"
+          id="Carts_x_product-EditForm-cart_id"
+          data-testid="Carts_x_product-EditForm-cart_id"
           type="text"
-          value={Carts_x_product.carts_id}
-          autoComplete="Carts_x_product-EditForm-carts_id"
-          aria-labelledby="Carts_x_product-EditForm-carts_id-label"
-          aria-describedby="Carts_x_product-EditForm-carts_id-note"
+          value={Carts_x_product.cart_id}
+          autoComplete="Carts_x_product-EditForm-cart_id"
+          aria-labelledby="Carts_x_product-EditForm-cart_id-label"
+          aria-describedby="Carts_x_product-EditForm-cart_id-note"
           onChange={(e) => {
             setCarts_x_product({
               ...Carts_x_product,
-              carts_id: e.target.value
+              cart_id: e.target.value
             });
           }}
         />
         <span
-          id="Carts_x_product-EditForm-carts_id-note"
-          data-testid="Carts_x_product-EditForm-carts_id-note"
+          id="Carts_x_product-EditForm-cart_id-note"
+          data-testid="Carts_x_product-EditForm-cart_id-note"
         >
-          The carts_id for your Carts_x_product
+          The cart_id for your Carts_x_product
         </span>
         <label
           id="Carts_x_product-EditForm-product_id-label"
@@ -108,9 +108,9 @@ export default function Carts_x_productEditForm() {
           onClick={async (e) => {
             e.preventDefault();
             console.log("Aqui esta tu Carts_x_product", Carts_x_product);
-            const query = `mutation editcarts_x_products  {
-              update_carts_x_products(where: {id: {_eq: ${id}}}, _set: {
-                carts_id:${Carts_x_product.carts_id}
+            const query = `mutation editproducts_in_cart  {
+              update_products_in_cart(where: {id: {_eq: ${id}}}, _set: {
+                cart_id:${Carts_x_product.cart_id}
                 product_id:${Carts_x_product.product_id}
                }) {
                 returning {
@@ -122,7 +122,7 @@ export default function Carts_x_productEditForm() {
             `;
             console.log(query);
             const { errors, data } = await executeQuery(
-              "editcarts_x_products",
+              "editproducts_in_cart",
               query
             );
             if (errors) {

@@ -1,4 +1,4 @@
-type Product = {
+export type Product = {
   id?: number;
   title?: string;
   description?: string;
@@ -8,6 +8,8 @@ type Product = {
   rating_average?: number;
   rating_count?: number;
   current_stock?: number;
-  created_at?: string;
-  updated_at?: string;
+  created_at: string;
+  updated_at: string;
 };
+
+export type Products = Product[];

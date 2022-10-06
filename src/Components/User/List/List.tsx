@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { executeQuery } from "../../../Service/GraphQlService";
+import { User } from "../Users";
 import "./List.css";
 
 export default function UserList() {
@@ -17,7 +18,7 @@ export default function UserList() {
         email
         firstname
         id
-        imagen
+        image
         lastname
         lat
         long
@@ -67,7 +68,7 @@ export default function UserList() {
             <h3>firstname</h3>
           </div>
           <div>
-            <h3>imagen</h3>
+            <h3>image</h3>
           </div>
           <div>
             <h3>lastname</h3>
@@ -100,7 +101,7 @@ export default function UserList() {
               <div>{p.address_zipcode}</div>
               <div>{p.email}</div>
               <div>{p.firstname}</div>
-              <div>{p.imagen}</div>
+              <div>{p.image}</div>
               <div>{p.lastname}</div>
               <div>{p.lat}</div>
               <div>{p.long}</div>

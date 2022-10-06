@@ -1,15 +1,20 @@
-type User = {
-  Lat?: number;
-  Long?: number;
-  Address_City?: string;
-  Address_street?: string;
-  Address_number?: number;
-  Address_zipcode?: number;
-  Email?: string;
-  Username?: string;
-  Password?: string;
-  Firstname?: string;
-  Lastname?: string;
+export type User = {
+  id: number;
+  lat?: number;
+  long?: number;
+  address_city?: string;
+  address_street?: string;
+  address_number?: number;
+  address_zipcode?: number;
+  email?: string;
+  username?: string;
+  password?: string;
+  firstname?: string;
+  lastname?: string;
   phone?: string;
-  imagen?: string;
+  image?: string;
+  created_at: string;
+  updated_at: string;
 };
+
+export type Users = User[];

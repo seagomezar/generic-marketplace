@@ -1,16 +1,17 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { executeQuery } from "../../../Service/GraphQlService";
+import { ProductInCart } from "../ProductInCart";
 import "./List.css";
 
 export default function CartsXProductList() {
-  const [carts_x_products, setCarts_x_products] = useState([]);
+  const [products_in_cart, setCarts_x_products] = useState([]);
 
   async function getCarts_x_products() {
     const query = `query getCarts_x_products {
-      carts_x_products {
+      products_in_cart {
         product_id
-        carts_id
+        cart_id
         id
         updated_at
         created_at
@@ -22,8 +23,8 @@ export default function CartsXProductList() {
     if (errors) {
       console.error(errors);
     }
-    console.info(data.carts_x_products);
-    setCarts_x_products(data.carts_x_products);
+    console.info(data.products_in_cart);
+    setCarts_x_products(data.products_in_cart);
   }
   useEffect(() => {
     getCarts_x_products();
@@ -31,9 +32,9 @@ export default function CartsXProductList() {
   return (
     <>
       <button>
-        <Link to={`/newcarts_x_products`}>Add a New carts_x_products</Link>
+        <Link to={`/newproducts_in_cart`}>Add a New products_in_cart</Link>
       </button>
-      {!carts_x_products.length ? (
+      {!products_in_cart.length ? (
         <h2>Loading ...</h2>
       ) : (
         <div className="CartsXProductTable">
@@ -59,11 +60,11 @@ export default function CartsXProductList() {
             <h3>Delete</h3>
           </div>
 
-          {carts_x_products.map((p: Product) => (
+          {products_in_cart.map((p: ProductInCart) => (
             <Fragment key={p.id}>
               <div>{p.id}</div>
               <div>{p.product_id}</div>
-              <div>{p.carts_id}</div>
+              <div>{p.cart_id}</div>
               <div>{new Date(p.created_at).toLocaleString()}</div>
               <div>{new Date(p.updated_at).toLocaleString()}</div>
               <div>
@@ -76,8 +77,8 @@ export default function CartsXProductList() {
                   onClick={async (e) => {
                     e.preventDefault();
                     const query = `
-                      mutation deletecarts_x_products {
-                        delete_carts_x_products(where: {id: {_eq: ${p.id}}}) {
+                      mutation deleteproducts_in_cart {
+                        delete_products_in_cart(where: {id: {_eq: ${p.id}}}) {
                           returning {
                             id
                           }
@@ -86,7 +87,7 @@ export default function CartsXProductList() {
                     `;
                     console.log(query);
                     const { errors, data } = await executeQuery(
-                      "deletecarts_x_products",
+                      "deleteproducts_in_cart",
                       query
                     );
                     if (errors) {

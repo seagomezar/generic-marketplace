@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { executeQuery } from "../../../Service/GraphQlService";
+import { ImagesXProduct } from "../ImagesXProducts";
 import "./List.css";
 
 export default function ImagesXProductList() {
@@ -8,9 +9,9 @@ export default function ImagesXProductList() {
 
   async function getImagesXProduct() {
     const query = `query getImagesXProduct {
-      images_x_products {
+      images_x_product {
         product_id
-        imagen
+        image
         id
         updated_at
         created_at
@@ -22,8 +23,8 @@ export default function ImagesXProductList() {
     if (errors) {
       console.error(errors);
     }
-    console.info(data.images_x_products);
-    setImagesXProducts(data.images_x_products);
+    console.info(data.images_x_product);
+    setImagesXProducts(data.images_x_product);
   }
   useEffect(() => {
     getImagesXProduct();
@@ -59,11 +60,11 @@ export default function ImagesXProductList() {
             <h3>Delete</h3>
           </div>
 
-          {imagesXProducts.map((p: Product) => (
+          {imagesXProducts.map((p: ImagesXProduct) => (
             <Fragment key={p.id}>
               <div>{p.id}</div>
               <div>{p.product_id}</div>
-              <div>{p.imagen}</div>
+              <div>{p.image}</div>
               <div>{new Date(p.created_at).toLocaleString()}</div>
               <div>{new Date(p.updated_at).toLocaleString()}</div>
               <div>
@@ -77,7 +78,7 @@ export default function ImagesXProductList() {
                     e.preventDefault();
                     const query = `
                       mutation deleteImagesXProduct {
-                        delete_images_x_products(where: {id: {_eq: ${p.id}}}) {
+                        delete_images_x_product(where: {id: {_eq: ${p.id}}}) {
                           returning {
                             id
                           }

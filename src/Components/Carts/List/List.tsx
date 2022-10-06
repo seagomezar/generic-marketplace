@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { executeQuery } from "../../../Service/GraphQlService";
+import { Cart } from "../Carts";
 import "./List.css";
 
 export default function CartstList() {
@@ -54,7 +55,7 @@ export default function CartstList() {
           <div>
             <h3>Delete</h3>
           </div>
-          {carts.map((p: Product) => (
+          {carts.map((p: Cart) => (
             <Fragment key={p.id}>
               <div>{p.id}</div>
               <div>{p.user_id}</div>

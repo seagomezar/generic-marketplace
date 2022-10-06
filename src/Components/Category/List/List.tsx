@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { executeQuery } from "../../../Service/GraphQlService";
+import { Category } from "../Category";
 import "./List.css";
 
 export default function CategorytList() {
@@ -54,7 +55,7 @@ export default function CategorytList() {
           <div>
             <h3>Delete</h3>
           </div>
-          {category.map((p: Product) => (
+          {category.map((p: Category) => (
             <Fragment key={p.id}>
               <div>{p.id}</div>
               <div>{p.title}</div>

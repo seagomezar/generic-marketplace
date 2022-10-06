@@ -18,38 +18,38 @@ updated_at: timestamptz!
 
 export default function Carts_x_productAddForm() {
   const [Carts_x_product, setCarts_x_product] = useState({
-    carts_id: "",
+    cart_id: "",
     product_id: ""
   });
   return (
     <div className="Carts_x_productAddForm">
       <form>
         <label
-          id="Carts_x_product-addform-carts_id-label"
-          data-testid="Carts_x_product-addform-carts_id-label"
-          htmlFor="Carts_x_product-addform-carts_id"
+          id="Carts_x_product-addform-cart_id-label"
+          data-testid="Carts_x_product-addform-cart_id-label"
+          htmlFor="Carts_x_product-addform-cart_id"
         >
-          carts_id:
+          cart_id:
         </label>
         <input
-          id="Carts_x_product-addform-carts_id"
-          data-testid="Carts_x_product-addform-carts_id"
+          id="Carts_x_product-addform-cart_id"
+          data-testid="Carts_x_product-addform-cart_id"
           type="text"
-          autoComplete="Carts_x_product-addform-carts_id"
-          aria-labelledby="Carts_x_product-addform-carts_id-label"
-          aria-describedby="Carts_x_product-addform-carts_id-note"
+          autoComplete="Carts_x_product-addform-cart_id"
+          aria-labelledby="Carts_x_product-addform-cart_id-label"
+          aria-describedby="Carts_x_product-addform-cart_id-note"
           onChange={(e) => {
             setCarts_x_product({
               ...Carts_x_product,
-              carts_id: e.target.value
+              cart_id: e.target.value
             });
           }}
         />
         <span
-          id="Carts_x_product-addform-carts_id-note"
-          data-testid="Carts_x_product-addform-carts_id-note"
+          id="Carts_x_product-addform-cart_id-note"
+          data-testid="Carts_x_product-addform-cart_id-note"
         >
-          The carts_id for your Carts_x_product
+          The cart_id for your Carts_x_product
         </span>
         <label
           id="Carts_x_product-addform-product_id-label"
@@ -83,9 +83,9 @@ export default function Carts_x_productAddForm() {
           onClick={async (e) => {
             e.preventDefault();
             console.log("Aqui esta tu Carts_x_product", Carts_x_product);
-            const query = `mutation carts_x_products {
-              insert_carts_x_products_one(object: {
-                  carts_id: "${Carts_x_product.carts_id}",
+            const query = `mutation products_in_cart {
+              insert_products_in_cart_one(object: {
+                  cart_id: "${Carts_x_product.cart_id}",
                   product_id: "${Carts_x_product.product_id}" 
                 } ) {
                     id
@@ -96,7 +96,7 @@ export default function Carts_x_productAddForm() {
           `;
             console.log(query);
             const { errors, data } = await executeQuery(
-              "carts_x_products",
+              "products_in_cart",
               query
             );
 

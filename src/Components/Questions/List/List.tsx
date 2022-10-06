@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { executeQuery } from "../../../Service/GraphQlService";
+import { Question } from "../Questions";
 import "./List.css";
 
 export default function QuestionsList() {
@@ -67,7 +68,7 @@ export default function QuestionsList() {
             <h3>Delete</h3>
           </div>
 
-          {questions.map((p: Product) => (
+          {questions.map((p: Question) => (
             <Fragment key={p.id}>
               <div>{p.id}</div>
               <div>{p.answer}</div>
