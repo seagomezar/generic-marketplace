@@ -1,32 +1,21 @@
-import { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { executeQuery } from "../../../Service/GraphQlService";
-import { Category } from "../Category";
-import "./List.css";
+import { Fragment, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  getCategories,
+  executeQuery,
+} from '../../../Service/GraphQlService';
+import { Category } from '../Category';
+import './List.css';
 
 export default function CategorytList() {
   const [category, setCategory] = useState([]);
 
-  async function getCategory() {
-    const query = `query getCategory {
-      categories {
-        id
-        title
-        updated_at
-        created_at
-      }
-    }
-    `;
-    console.log(query);
-    const { errors, data } = await executeQuery("getCategory", query);
-    if (errors) {
-      console.error(errors);
-    }
-    console.info(data.categories);
+  async function populateCategories() {
+    const data = await getCategories();
     setCategory(data.categories);
   }
   useEffect(() => {
-    getCategory();
+    populateCategories();
   }, []);
   return (
     <>
@@ -81,14 +70,14 @@ export default function CategorytList() {
                     `;
                     console.log(query);
                     const { errors, data } = await executeQuery(
-                      "delete_categories",
+                      'delete_categories',
                       query
                     );
                     if (errors) {
                       console.error(errors);
                     }
                     console.log(data);
-                    getCategory();
+                    populateCategories();
                   }}
                 >
                   D

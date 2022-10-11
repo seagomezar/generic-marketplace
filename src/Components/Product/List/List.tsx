@@ -1,44 +1,27 @@
-import { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { executeQuery } from "../../../Service/GraphQlService";
-import { Product } from "../Product";
-import "./List.css";
+import { Fragment, useEffect, useState } from 'react';
+import Select from 'react-select';
+import { Link } from 'react-router-dom';
+import {
+  executeQuery,
+  getProducts,
+} from '../../../Service/GraphQlService';
+import { Product } from '../Product';
+import './List.css';
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
 
-  async function getProducts() {
-    const query = `query getProducts {
-      products {
-        category
-        created_at
-        current_stock
-        description
-        id
-        image
-        price
-        rating_average
-        rating_count
-        title
-        updated_at
-      }
-    }
-    `;
-    console.log(query);
-    const { errors, data } = await executeQuery("getProducts", query);
-    if (errors) {
-      console.error(errors);
-    }
-    console.info(data.products);
-    setProducts(data.products);
+  async function populateProducts() {
+    const dataProducts = await getProducts();
+    setProducts(dataProducts.products);
   }
   useEffect(() => {
-    getProducts();
+    populateProducts();
   }, []);
   return (
     <>
       <button>
-        <Link to={`/newProduct`}>Add a New Product</Link>
+        <Link to={`/new-product`}>Add a New Product</Link>
       </button>
       {!products.length ? (
         <h2>Loading ...</h2>
@@ -117,7 +100,7 @@ export default function ProductList() {
                     `;
                     console.log(query);
                     const { errors, data } = await executeQuery(
-                      "deleteProduct",
+                      'deleteProduct',
                       query
                     );
                     if (errors) {
